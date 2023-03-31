@@ -47,7 +47,7 @@ const player1 = {
       setStatus(`${currentPlayer.name}'s turn`);
       form.classList.add('hidden');
     } else {
-      alert('Please enter both player names');
+      alert('Please enter both player names!');
     }
   }
 
@@ -139,3 +139,19 @@ const player1 = {
   //Add event listeners for the form submission and restart button.
   form.addEventListener('submit', startGame);
   restartButton.addEventListener('click', restartGame);
+
+
+  // after graded**************************************************
+function restartGame() {
+  cells.forEach(cell => {
+    cell.removeEventListener('click', handleClick);
+    cell.textContent = '';
+  });
+
+  currentPlayer = undefined;
+  gameStatus = new Array(9).fill('');
+  form.reset();
+  startButton.disabled = false;
+  restartButton.classList.add('hidden');
+  setStatus(`Please enter both player names!`);
+}
